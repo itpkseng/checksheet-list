@@ -1,106 +1,293 @@
+:root {
+    --navbar : #635B3C;
+    --main-bg : #94885A;
+    --font : 'Inter','sans-serif';
+    --btn-red : #E3083F;
+}
+
 body {
-    background-color: #94885A;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter',sans-serif;
+    background-color: var(--main-bg);
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
 }
 
-/* index */
-
-.index {
-    margin-bottom: 50px;
-}
+/* nav */
 
 nav {
+    color : white;
     display: flex;
+    background-color: var(--navbar);
     justify-content: space-between;
-    background-color: #635B3C;
-    width: 100%;
-    color: white;
 }
 
 nav .left {
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    justify-content: space-between;
 }
 
 nav .left img {
-    width: 50px;
     height: 50px;
+    width: 50px;
 }
 
 nav .right {
     display: flex;
+    margin-right: 0.25rem;
+    justify-content: center;
     align-items: center;
-    margin-right: 10px;
 }
+
+
+
 
 nav .right img {
-    width: 30px;
     height: 30px;
-    margin-left: 5px;
+    width: 30px;
 }
 
-.logout {
-    margin-top: 2rem;
-    height: 28px;
-    width: 158px;
-    color: white;
-    text-align: center;
-    background-color: red;
-    font-size: 16px;
+nav .right p {
+    margin-right: 0.5rem;
+}
+
+/* end of navbar */
+
+/* checksheets */
+
+.checksheets {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    width : 55%;
+    margin: auto;
+    height: 140vh;
+}
+
+.checksheets button {
+    background-color: var(--btn-red);
+    color:white;
     border: 1px solid #4B4B4B;
-    font-weight: bold;
+    padding: 3px 40px;
+    font-weight: bolder;
     border-radius: 5px;
+
 }
 
-.logout:hover {
+
+
+/* end of checksheets  */
+
+/* checksheet */
+
+.checksheet {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 60vh;
+    border-radius: 9px;
+}
+
+.checksheet .header {
+    padding-left:25px;
+    height: 30%;
+    
+}
+
+.checksheet .header h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.checksheet .header p {
+    padding: 0;
+    margin: 0;
+}
+
+.checksheet .lists {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 0 20px;
+    font-weight: bold;
+    justify-content: space-evenly;
+    height: 100%;
+    
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.checksheet .progress {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+.checksheet .lists form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checksheet .lists form label {
+    background-color: #D9D9D9;
+    padding: 7.5px 0px;
+    padding-left: 10px;
+    border-radius: 5px;
+    max-width: 750px;
+    width: 500px;
+    min-width: 250px;
+}
+
+.checksheet .lists form .action {
+    display: flex;
+}
+
+
+.checksheet .lists form button {
+    width: 50px;
+    padding: 0;
+    margin-right: 20px;
+}
+.checksheet .lists form button[type="submit"] {
+    background-color: #6CD347;
+}
+
+.checksheet .lists form button:hover {
     cursor: pointer;
 }
 
-.checklist{
-    background-color: white;
-    width: 707px;
-    height: 426px;
+
+
+/* end of checksheet */
+
+@media only screen and (max-width: 744px) {
+
+
+    .checksheet .header {
+        height: 20%;  
+    }
+
+    .checksheet .lists {
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px 0 20px;
+        font-weight: bold;
+        justify-content: space-around;
+        height: 100%;
+        
+        
+    }
+
+    .checksheet .lists form {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .checksheet .lists form label {
+        background-color: #D9D9D9;
+        padding: 7.5px 0px;
+        padding-left: 10px;
+        border-radius: 5px;
+        width: 200px;
+        min-width: 100px;
+        font-size: 0.75rem;
+    }
+    
+    .checksheet .lists form .action {
+        display: flex;
+    }
+    
+    
+    .checksheet .lists form button {
+        width: 30px;
+        padding: 0;
+        
+    }
+    .checksheet .lists form button[type="submit"] {
+        background-color: #6CD347;
+    }
+
+
+   }
+
+
+
+@media only screen and (max-width: 425px) {
+
+
+    /* checksheets */
+
+.checksheets {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: start;
+    justify-content: space-evenly;
+    width : 95%;
+    margin: auto;
+    height: 140vh;
+}
+
+.checksheets button {
+    background-color: var(--btn-red);
+    color:white;
+    border: 1px solid #4B4B4B;
+    padding: 3px 40px;
+    font-weight: bolder;
     border-radius: 5px;
+
 }
 
-.checklist section h1 {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 20px 0 0 35px;
-}
 
-.checklist section p {
-    font-size: 14px;
-    font-weight: bold;
-    padding-left: 35px;
-    margin-top: -32.5px;
-}
 
-.list {
+/* end of checksheets  */
+
+/* checksheet */
+
+.checksheet {
     display: flex;
     flex-direction: column;
-    height: 75%;
-    justify-content: space-evenly;
-    padding-left: 35px;
-    margin-top: -30px;
+    background-color: white;
+    width: 100%;
+    height: 60vh;
+    border-radius: 9px;
 }
 
-.list button {
-    width: 605px;
-    height: 37px;
-    font-size: 16px;
+.checksheet .header {
+    padding-left:25px;
+    height: 30%;
+    
+}
+
+.checksheet .header h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.checksheet .header p {
+    padding: 0;
+    margin: 0;
+}
+
+.checksheet .lists {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 0 20px;
     font-weight: bold;
-    text-align: left;
-    padding-left: 20px;
-    border: none;
+    justify-content: space-evenly;
+    height: 100%;
+    
+}
+
+.checksheet .lists label {
     background-color: #D9D9D9;
+    padding: 7.5px 25px;
     border-radius: 5px;
 }
 
@@ -108,103 +295,18 @@ input[type="file"]{
     display: none;
 }
 
-label {
-    width: 585px;
-    height: 37px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-    border: none;
-    background-color: #D9D9D9;
-    border-radius: 5px;
+.checksheet .progress {
     display: flex;
-    padding-left: 25px;
-    justify-content: left;
     align-items: center;
+    padding-left: 25px;
+    margin-bottom: 10px;
 }
 
-label:hover {
-    cursor: pointer;
-    background-color: #636161;
-    color: white;
+
+
+
+/* end of checksheet */
 }
-
-/* end of index  */
-
-@media only screen and (max-width: 744px) {
-    body {
-    background-color: red;
-    }
-
-    .checklist{
-        background-color: white;
-        width: 100%;
-        height: 75%;
-        border-radius: 5px;
-    }
-    
-    .checklist section h1 {
-        font-size: 24px;
-        font-weight: bold;
-        padding: 20px 0 0 35px;
-    }
-    
-    .checklist section p {
-        font-size: 14px;
-        font-weight: bold;
-        padding-left: 35px;
-        margin-top: -32.5px;
-    }
-    
-    .list {
-        display: flex;
-        flex-direction: column;
-        height: 75%;
-        justify-content: space-evenly;
-        padding-left: 35px;
-        margin-top: -30px;
-    }
-    
-    .list button {
-        width: 605px;
-        height: 37px;
-        font-size: 16px;
-        font-weight: bold;
-        text-align: left;
-        padding-left: 20px;
-        border: none;
-        background-color: #D9D9D9;
-        border-radius: 5px;
-    }
-    
-    input[type="file"]{
-        display: none;
-    }
-    
-    label {
-        width: 50%;
-        height: 50%;
-        font-size: 16px;
-        font-weight: bold;
-        text-align: left;
-        border: none;
-        background-color: #D9D9D9;
-        border-radius: 5px;
-        display: flex;
-        padding-left: 25px;
-        justify-content: left;
-        align-items: center;
-    }
-    
-    label:hover {
-        cursor: pointer;
-        background-color: #636161;
-        color: white;
-    }
-
-   }
-
-
 
 
 

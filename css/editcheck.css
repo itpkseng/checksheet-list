@@ -1,213 +1,436 @@
-body {
-    background-color: #94885A;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter',sans-serif;
-    margin: 0;
-    padding: 0;
+:root {
+    --navbar : #635B3C;
+    --main-bg : #94885A;
+    --font : 'Inter','sans-serif';
+    --btn-red : #E3083F;
 }
 
+body {
+    background-color: var(--main-bg);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
+}
 
-/* edit checklist */
+/* nav */
 
 nav {
+    color : white;
     display: flex;
+    background-color: var(--navbar);
     justify-content: space-between;
-    background-color: #635B3C;
-    width: 100%;
-    color: white;
 }
 
 nav .left {
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    justify-content: space-between;
 }
 
 nav .left img {
-    width: 50px;
     height: 50px;
+    width: 50px;
 }
 
 nav .right {
     display: flex;
+    margin-right: 0.25rem;
+    justify-content: center;
     align-items: center;
-    margin-right: 10px;
 }
+
+
+
 
 nav .right img {
-    width: 30px;
     height: 30px;
-    margin-left: 5px;
+    width: 30px;
 }
 
-.editcheck {
+nav .right p {
+    margin-right: 0.5rem;
+}
+
+/* end of navbar */
+
+/* checksheets */
+
+.make-checksheet {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    height: 81.5%;
-    margin-left: 35px;
-    
+    align-items: start;
+    width : 55%;
+    margin: auto;
+    margin-top: 22px;
+    height: 140vh;
 }
 
-.logout {
-    margin-top: 2rem;
-    height: 28px;
-    width: 158px;
-    color: white;
-    text-align: center;
-    background-color: red;
-    font-size: 16px;
+.make-checksheet button {
+    background-color: var(--btn-red);
+    color:white;
     border: 1px solid #4B4B4B;
-    font-weight: bold;
+    padding: 3px 40px;
+    font-weight: bolder;
     border-radius: 5px;
+    margin-bottom: 30px;
+
 }
 
-.logout:hover {
-    cursor: pointer;
-}
 
-.editcheck input[type="text"],input[type="date"] {
-    width: 642px;
-    height: 68px;
-    border-radius: 5px;
-    border: 1px solid #00000015;
-    padding-left: 15px;
-    font-size: 24px;
-}
 
-.editcheck section:last-child {
+
+/* end of checksheets  */
+
+/* checksheet */
+
+.container {
     display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.editcheck button {
-    background-color: #23ED2B;
-    border: 1px solid #4B4B4B;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 13px 100px;
-    align-self: center;
-    cursor: pointer;
-    margin-right: 5px;
-    
-}
-
-.editcheck button:last-child {
-    background-color: #E3083F;
-}
-
-/* end of edit checklist */
-
-.checklist{
+    flex-direction: column;
     background-color: white;
-    width: 707px;
-    height: 426px;
-    border-radius: 5px;
+    width: 100%;
+    height: 70vh;
+    border-radius: 9px;
 }
 
-.checklist section h1 {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 20px 0 0 35px;
+.container .header {
+    padding-left:25px;
+    height: 20%;
 }
 
-.checklist section p {
-    font-size: 14px;
-    font-weight: bold;
-    padding-left: 35px;
-    margin-top: -32.5px;
+.container .header h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
 }
 
-.list {
+.container .header p {
+    padding: 0;
+    margin: 0;
+}
+
+.container input {
+    padding: 20px 0;
+    padding-left: 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.container .lists {
     display: flex;
     flex-direction: column;
-    height: 75%;
+    padding: 0 20px;
+    font-weight: bold;
     justify-content: space-evenly;
-    padding-left: 35px;
-    margin-top: -30px;
+    height: 100%;
 }
 
-.list button {
-    width: 605px;
-    height: 37px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 20px;
-    border: none;
-    background-color: #D9D9D9;
-    border-radius: 5px;
+.container .lists .check {
+    display: flex;
+    align-items: center;
 }
+
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+}
+
+
+
 
 input[type="file"]{
     display: none;
 }
 
-label {
-    font-size: 16px;
-    font-weight: bold;
+.container form .action {
+    margin-top: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.checkfor {
-    display: flex;
+
+
+
+.container button[type="submit"] {
+    background-color: #6CD347;
+    color: black;
+    border: 1px solid #4B4B4B;
+    padding: 15px 50px;
+    font-weight: 800;
+    font-size: 1.15rem;
 }
 
-.checkfor label {
-    margin-left: 2px;
+.delete-btn {
+    background-color: var(--btn-red) !important;
+    color: white !important;
 }
 
-@media only screen and (max-width: 430px) {
-    
-}
 
+
+
+
+
+/* end of checksheet */
 
 @media only screen and (max-width: 744px) {
 
- .checklist{     
-    width: 403px;
-    margin: auto;
-    height: 350px;
-    border-radius: 5px;
-}
+    /* checksheets */
 
-.logout {
-    margin-left: 1.75rem;
-}
-
-.editcheck section:last-child {
+.make-checksheet {
     display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.editcheck button {
-    border: 1px solid #4B4B4B;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 25px;
-    align-self: center;
-    cursor: pointer;
-    margin-right: 5px;
+    flex-direction: column-reverse;
+    align-items: normal;
+    width :95%;
+    margin: auto;
+    margin-top: 22px;
+    height: 80vh;
     
 }
 
-.editcheck button:last-child {
-    background-color: #E3083F;
+.make-checksheet button {
+    background-color: var(--btn-red);
+    color:white;
+    border: 1px solid #4B4B4B;
+    padding: 10px 50px;
+    font-weight: bolder;
+    border-radius: 5px;
+    align-self: center;
+    margin-top: 20px;
+    font-weight: 800;
 }
 
-.editcheck input[type="text"],input[type="date"] {
-    width: 300px;
-    height: 37px;
+
+
+
+/* end of checksheets  */
+
+/* checksheet */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    border-radius: 9px;
+}
+
+.container .header {
+    padding-left:25px;
+    height: 20%;
+    
+}
+
+.container .header h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.container .header p {
+    padding: 0;
+    margin: 0;
+}
+
+.container input {
+    padding: 20px 0;
+    padding-left: 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.container .lists {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 0 20px;
+    font-weight: bold;
+    justify-content: space-evenly;
+    height: 80%;
+}
+
+.container .lists .check {
+    display: flex;
+    align-items: center;
+}
+
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+}
+
+input[type="date"] {
+    width: 95%;
+}
+
+
+
+input[type="file"]{
+    display: none;
+}
+
+.container .action {
+    margin-top: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+
+.container button[type="submit"] {
+    background-color: #6CD347;
+    color: black;
+    border: 1px solid #4B4B4B;
+    padding: 15px 50px;
+    font-weight: 800;
+    font-size: 1.15rem;
+}
+
+.delete-btn {
+    background-color: var(--btn-red) !important;
+    color: white !important;
+}
+
+
+
+
+
+
+/* end of checksheet */
+
+
+   }
+@media only screen and (max-width: 425px) {
+
+    /* checksheets */
+
+.make-checksheet {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: normal;
+    width :95%;
+    margin: auto;
+    margin-top: 22px;
+    height: 80vh;
+    
+}
+
+.make-checksheet button {
+    background-color: var(--btn-red);
+    color:white;
+    border: 1px solid #4B4B4B;
+    padding: 10px 50px;
+    font-weight: bolder;
     border-radius: 5px;
-    border: 1px solid #00000015;
-    padding-left: 5px;
-    font-size: 24px;
+    align-self: center;
+    margin-top: 20px;
+    font-weight: 800;
 }
+
+
+
+
+/* end of checksheets  */
+
+/* checksheet */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 50vh;
+    border-radius: 9px;
 }
+
+.container .header {
+    padding-left:25px;
+    height: 30%;
+    
+}
+
+.container .header h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.container .header p {
+    padding: 0;
+    margin: 0;
+}
+
+.container input {
+    padding: 10px 0;
+    padding-left: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.container .lists {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 0 20px;
+    font-weight: bold;
+    justify-content: space-evenly;
+    height: 60%;
+}
+
+.container .lists .check {
+    display: flex;
+    align-items: center;
+}
+
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+}
+
+input[type="date"] {
+    width: 93%;
+}
+
+
+
+input[type="file"]{
+    display: none;
+}
+
+.container .action {
+    margin-top: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+
+.container button[type="submit"] {
+    background-color: #6CD347;
+    color: black;
+    border: 1px solid #4B4B4B;
+    padding: 10px 50px;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.delete-btn {
+    background-color: var(--btn-red) !important;
+    color: white !important;
+}
+
+
+
+
+
+
+/* end of checksheet */
+
+
+   }

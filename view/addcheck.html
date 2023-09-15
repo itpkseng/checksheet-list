@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Awal</title>
+    <title>Make Checklist Sheet</title>
     <link rel="stylesheet" href="../css/addcheck.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
 <body>
     <nav>
         <section class="left">
@@ -19,24 +20,32 @@
             <img src="../img//account-circle.png" alt="">
         </section>
     </nav>
-    <section class="index">
-        <button class="logout">LOGOUT</button>
-        <section class="checklist">
-            <section>
-                <h1>MAKE CHECKLIST</h1>
+    <section class="make-checksheet">
+        <button>LOGOUT</button>
+        <section class="container">
+            <section class="header">
+                <h2>MAKE CHECKLIST</h2>
                 <p>24 Agustus 2023</p>
             </section>
-            <section class="addcheck">         
-                <input type="text" name="namachecklist" id="namachecklist" placeholder="Nama Checklist">
+            <form action="" method="post">
+            <section class="lists">
+                <input type="text" name="" id="" placeholder="Nama Checklist">
                 <input type="date" id="start" name="tanggalchecklist" value="2023-10-01" min="2023-10-01" max="2025-12-31" />
-                <label for="checkfor">Ditunjukkan Ke</label>
+                <section class="check">
+                    <label for="checkfor">Ditunjukkan Ke</label>
                     <input type="checkbox" name="agus" id="agus" value="agus">
                     <label for="agus">Agus</label>
                     <input type="checkbox" name="agum" id="agum" value="agum">
                     <label for="agum">Agum</label>
-                <button type="submit">CREATE</button>
+                </section>
             </section>
-            
+            <section class="action">
+                <button type="submit">
+                    CREATE
+                </button>
+            </section>
+        </form>
         </section>
+    </section>
 </body>
 </html>

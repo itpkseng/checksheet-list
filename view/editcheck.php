@@ -1,3 +1,16 @@
+<?php
+session_start();
+if ( !isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SESSION["level"] = "staff") {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +59,7 @@
                     <button type="submit" class="delete-btn">
                         DELETE
                     </button>
+                    <a href="delete.php?id=1">DELETE</a>
                 </section>
             </form>
         </section>

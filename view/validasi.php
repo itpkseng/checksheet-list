@@ -1,3 +1,17 @@
+<?php
+session_start();
+if ( !isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SESSION["level"] = "staff") {
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

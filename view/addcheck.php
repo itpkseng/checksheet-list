@@ -19,9 +19,10 @@ require '../functions/plus.php';
 
 
 if( isset($_POST["create-btn"])) {
-    $_POST["untuk"] = join(",",$_POST["checkbox"]);
+    $_POST["untuk"] = $_POST["radio"];
     $_POST["tanggalbuat"] = date('Y-m-d H:i:s');
     $_POST["kondisi"] = "belum validasi";
+    $_POST["gambar"] = "";
 
     if(plus($_POST) > 0) {
         echo "<script>
@@ -78,14 +79,14 @@ $untuk = query("SELECT username FROM user WHERE id != $id");
                 <h2>MAKE CHECKLIST</h2>
                 <p>24 Agustus 2023</p>
             </section>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
             <section class="lists">
                 <input type="text" name="nama" id="nama" placeholder="Nama Checklist" required>
                 <input type="date" id="start" name="tanggal" value="2023-09-18" min="2023-09-18" max="2025-12-31" required />
                 <section class="check">
                     <label for="checkfor">Ditunjukkan Ke</label>
                     <?php foreach($untuk as $u) :?>
-                        <input type="checkbox" name="checkbox[]" id="<?= $u["username"]?>" value="<?= $u["username"]?>">
+                        <input type="radio" name="radio" id="<?= $u["username"]?>" value="<?= $u["username"]?>">
                     <label for="<?= $u["username"]?>"><?= $u["username"]?></label>
                         <?php endforeach;?>
                 </section>

@@ -5,10 +5,22 @@ if ( !isset($_SESSION["login"])) {
     exit;
 }
 
-if ($_SESSION["level"] = "staff") {
+if ($_SESSION["level"] === "staff") {
     header("Location: login.php");
     exit;
 }
+
+// require './functions/connection.php';
+// require './functions/semua.php';
+
+require '../functions/connection.php';
+require '../functions/semua.php';
+
+$id = $_GET["id"];
+
+$checklist = query("SELECT * FROM checklist WHERE id = $id")[0];
+
+var_dump($checklist["gambar"]);
 
 ?>
 
@@ -42,7 +54,7 @@ if ($_SESSION["level"] = "staff") {
                 <p>24 Agustus 2023</p>
             </section>
             <section class="document">
-                <a href="#">Nama.png</a>
+                <img src="../<?= $checklist["gambar"]?>" alt="" width="100" height="100">
             </section>
             <form method="post" action="" class="action">
                 <button type="submit">TIDAK VALID</button>

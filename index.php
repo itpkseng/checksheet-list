@@ -19,18 +19,60 @@ $besokAngka = $hariJadiAngka + 86400;
 $besok = date('Y-m-d',$besokAngka);
 
 
-$dataTampilSemua = query("SELECT * FROM checklist");
+$dataTampilHariIni = query("SELECT * FROM checklist WHERE tanggal = '$hariIni'");
+$dataTampilBesok = query("SELECT * FROM checklist WHERE tanggal = '$besok'");
 
-//upload gambar
 
-// if(isset($_POST["submit"])) {
-//     $file = upload();
-//     if (!$file) {
-//         return false;
-//     }
-// }
+$kondisiHariIni = [];
+$kondisiBesok = [];
 
-//upload dan kompress gambar
+//mengambil kondisi checklist hari ini
+foreach($dataTampilHariIni as $data) {
+    // var_dump($data["kondisi"]);
+    // echo"<br>";
+    $kondisiHariIni[] = $data["kondisi"];
+}
+
+//mengambil kondisi checklist besok
+foreach($dataTampilBesok as $data) {
+    $kondisiBesok[] = $data["kondisi"];
+}
+
+function sudahValid($nilai){
+    return ($nilai === "tervalidasi");
+}
+function belumValid($nilai) {
+    return ($nilai === "belum validasi");
+}
+
+
+//mengetahui jumlah kondisi checklist hari ini
+
+$jumlahChecklistHariIni = count($kondisiHariIni);
+$validHariIni= count(array_filter($kondisiHariIni,"sudahValid"));
+$belumValidHariIni = count(array_filter($kondisiHariIni,"belumValid"));
+
+
+
+//mengetahui jumlah kondisi checklist besok
+
+$jumlahChecklistBesok = count($kondisiBesok);
+$validBesok = count(array_filter($kondisiBesok,"sudahValid"));
+$belumValidBesok = count(array_filter($kondisiBesok,"belumValid"));
+
+
+if ($validHariIni === 0) {
+    $persentaseHariIni = 0.0;
+} else {
+    $persentaseHariIni = 2 / $jumlahChecklistHariIni * 100;
+}
+
+if ($validBesok === 0) {
+    $persentaseBesok = 0.0;
+} else {
+    $persentaseBesok = $validBesok / $jumlahChecklistBesok * 100;
+}
+
 
 function compressImage($source, $destination, $quality) { 
     // Get image info 
@@ -91,7 +133,49 @@ if(isset($_POST["submit"])){
              
             if($compressedImage){ 
                 $status = 'success'; 
-                $statusMsg = "Image compressed successfully."; 
+                $_POST["kondisi"] = "menunggu validasi";
+                $_POST["gambar"] = $compressedImage;
+                function uploadGambar($data) {
+                    global $conn;
+                    $id = $data["id"];
+                    $kondisi = $data["kondisi"];
+                    $gambar = $data["gambar"];
+                
+                    mysqli_query($conn,"UPDATE checklist SET kondisi = '$kondisi', gambar = '$gambar' WHERE id = '$id'");
+                
+                    return mysqli_affected_rows($conn);
+                
+                    
+                
+                }
+
+                if(uploadGambar($_POST) > 0) {
+                    echo "
+                    <script>
+                        alert('checklist berhasil di update');
+                        document.location.href = 'index.php';
+                    </script>
+                    ";
+                }
+                else {
+                    echo "
+                    <script>
+                        alert('checklist gagal di update');
+                        document.location.href = 'index.php';
+                    </script>
+                    ";
+                }
+
+
+
+
+
+
+
+
+
+
+
             }else{ 
                 $statusMsg = "Image compress failed!"; 
             } 
@@ -104,6 +188,7 @@ if(isset($_POST["submit"])){
 } 
 
 echo $statusMsg;
+
 
 
 
@@ -141,48 +226,80 @@ echo $statusMsg;
                 <h2>YOUR CHECKLIST</h2>
                 <p><?= $hariIni ?></p>
             </section>
-            <?php foreach($dataTampilSemua as $data) :?>
+            <?php foreach($dataTampilHariIni as $data) :?>
+                <!-- mengambil tanggal dan userReal -->
                 <?php
                     $tanggalReal = $data["tanggal"];
-                    // if(var_dump(strstr($data["untuk"],$_SESSION["username"]))) {
-                    //     $userReal = true;
-                    // } else {
-                    //     $userReal = false;
-                    // }
                     $userReal = strstr($data["pembuat"],$_SESSION["username"]);
                     $untukReal = strstr($data["untuk"],$_SESSION["username"]);
+                    $tungguValidasi = strtr($data["kondisi"],$kondisiHariIni);
+                    $belumValidasi = strtr($data["kondisi"], $kondisiHariIni);
+                    $tervalidasi = strtr($data["kondisi"],$kondisiHariIni);
+                    
+                    
                 ?>
+                <!-- mengambil tanggal dan userReal -->
+
+                <!-- view untuk yang bukan staff -->
                 <?php if($_SESSION["level"] !== "staff") :?>
-                    <?php if($tanggalReal == $hariIni && $userReal && $untukReal) :?>
+                    <!-- Jika Tanggal Hari ini + pembuat sama dengan nama user + untuk sama dengan nama user 
+                    maka tampilkan -->
+                    <?php if($tanggalReal == $hariIni && $userReal || $untukReal) :?>
                     <section class="lists">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input type="file" id="image"name="image" required>
-                    <label for="image"><?=$data["nama"]?></label>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?= $data["id"]?>">
+                        <input type="hidden" name="tanggalbuat" value="<?= $data["tanggalbuat"]?>">
+                        <input type="hidden" name="untuk" value="<?= $data["untuk"]?>">
+                        <input type="hidden" name="kondisi" value="<?= $data["kondisi"]?>">
+                        <input type="file" id="image"name="image" required>
+                        <label for="image"><?=$data["nama"]?></label>
+
+                    <!-- jika list dibuat oleh user -->
+                    <?php if($untukReal) :?>
                     <section class="action">
                         <button type="submit" name="submit"><img src="./img/ok-icon.svg" alt=""></button>
-                        <button class="cancel-btn"><img src="./img/cancel-icon.svg" alt=""></button>
-                    </section>    
+                        <button class="cancel-btn" name="cancel"><img src="./img/cancel-icon.svg" alt=""></button>
+                    </section> 
+                    <?php endif;?> 
+                    <!-- jika list dibuat untuk user -->
+                    <?php if($userReal) : ?>
+                    <section class="action">
+                        <a href="./view/editcheck.php?id=<?= $data["id"]?>"><img src="./img/edit-icon.svg" alt=""></a>
+                        <a href="./view/delete.php?id=<?= $data["id"]?>"><img src="./img/delete-icon.svg" alt=""></a>
+                    </section>
+                    <?php endif;?>  
                 </form>
             </section>
+
+            <!-- view yang bukan untuk staff selesai -->
                         
                 
                     <?php endif;?>
                 <?php endif;?>
-                <?php if($tanggalReal == $hariIni && $untukReal) :?>
+                      <!-- view untuk yang bukan staff -->
+
+                <!-- view untuk level staff -->
+                <?php if($_SESSION["level"] === "staff") :?>
+                     <!-- Jika Tanggal Hari ini + untuk sama dengan nama user 
+                    maka tampilkan -->
                     <section class="lists">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input type="file" id="image"name="image" required>
-                    <label for="image"><?=$data["nama"]?></label>
-                    <section class="action">
-                        <button type="submit" name="submit"><img src="./img/ok-icon.svg" alt=""></button>
-                        <button class="cancel-btn"><img src="./img/cancel-icon.svg" alt=""></button>
-                    </section>    
-                </form>
-            </section>
+                    <?php if($tanggalReal == $hariIni && $untukReal) :?>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $data["id"]?>">
+                            <input type="file" id="image" name="image" required>
+                            <label for="image"><?=$data["nama"]?></label>
+                            <section class="action">
+                                <button type="submit" name="submit"><img src="./img/ok-icon.svg" alt=""></button>
+                                <button class="cancel-btn"><img src="./img/cancel-icon.svg" alt=""></button>
+                                </section>
+                        </form>           
+                        </section>
                     <?php endif;?>
+                <?php endif;?>
+                <!-- selesai view untuk level staff -->
             <?php endforeach;?>
             <section class="progress">
-                <p>100%</p>
+                <p><?=$persentaseHariIni?>%</p>
             </section>
         </section>
 
@@ -200,7 +317,7 @@ echo $statusMsg;
                 <h2>YOUR CHECKLIST</h2>
                 <p><?= $besok ?></p>
             </section>
-            <?php foreach($dataTampilSemua as $data) :?>
+            <?php foreach($dataTampilBesok as $data) :?>
                 <?php $dataReal = $data["tanggal"]?>
                 <?php if($dataReal == $besok) :?>
                     <section class="lists">

@@ -2,5 +2,5 @@
 
 //koneksi ke database
 
-$conn = mysqli_connect("localhost","root","","checksheet-list-final");
+    $conn = mysqli_connect("localhost","root","","checksheet-list-final");
 ?>

@@ -1,45 +1,35 @@
 <?php
-session_start();
-if ( !isset($_SESSION["login"])) {
-    header("Location: login.php");
-    exit;
-}
-
-if ($_SESSION["level"] === "staff") {
-    header("Location: login.php");
-    exit;
-}
-
-require '../functions/semua.php';
-
-date_default_timezone_set('Asia/Jakarta');
-
-require '../functions/connection.php';
-require '../functions/plus.php';
-
-
-if( isset($_POST["submit"])) {
-    $_POST["untuk"] = $_POST["radio"];
-    $_POST["tanggalbuat"] = date('Y-m-d H:i:s');
-    $_POST["kondisi"] = "belum validasi";
-    $_POST["gambar"] = "";
-
-    if(plus($_POST) > 0) {
-        echo "<script>
-        alert('checklist berhasil ditambahkan');
-        document.location.href = '../index.php';
-        </script>";   
-    } else {
-        echo "<script>alert('checklist gagal ditambahkan')</script>";
+    session_start();
+    if ( !isset($_SESSION["login"])) {
+        header("Location: login.php");
+        exit;
     }
+    if ($_SESSION["level"] === "staff") {
+        header("Location: login.php");
+        exit;
+    }
+    require '../functions/semua.php';
+    date_default_timezone_set('Asia/Jakarta');
+    require '../functions/connection.php';
+    require '../functions/plus.php';
+    if( isset($_POST["submit"])) {
+        $_POST["untuk"] = $_POST["radio"];
+        $_POST["tanggalbuat"] = date('Y-m-d H:i:s');
+        $_POST["kondisi"] = "belum validasi";
+        $_POST["gambar"] = "";
 
-}
-
-$id = $_SESSION["id"];
-$untuk = query("SELECT id,username FROM user WHERE id != $id");
-
-$hariIni = date('Y-m-d');
-
+        if(plus($_POST) > 0) {
+            echo "<script>
+            alert('checklist berhasil ditambahkan');
+            document.location.href = '../index.php';
+            </script>";   
+        } else {
+            echo "<script>alert('checklist gagal ditambahkan')</script>";
+        }
+    }
+    $id = $_SESSION["id"];
+    $untuk = query("SELECT id,username FROM user WHERE id != $id");
+    $hariIni = date('Y-m-d');
 ?>
 
 

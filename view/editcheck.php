@@ -48,7 +48,7 @@ if(isset($_POST["submit"])) {
 }
 
 $id = $_SESSION["id"];
-$untuk = query("SELECT username FROM user WHERE id != $id");
+$untuk = query("SELECT id,username FROM user WHERE id != $id");
 
 ?>
 
@@ -83,18 +83,26 @@ $untuk = query("SELECT username FROM user WHERE id != $id");
             </section>
             <form action="" method="post" enctype="multipart/form-data">
             <section class="lists">
+                <?php
+                $id = intval($check["untuk"]);
+             
+                $name = query("SELECT username from user WHERE id = $id");
+                
+                ?>
                 <input type="hidden" name="id" value="<?= $check["id"]?>">
                 <input type="hidden" name="tanggalbuat" value="<?= $check["tanggalbuat"]?>">
                 <input type="hidden" name="untuk" value="<?= $check["untuk"]?>">
                 <input type="hidden" name="kondisi" value="<?= $check["kondisi"]?>">
                 <input type="hidden" name="gambar" value="<?= $check["gambar"]?>">
+                <input type="hidden" name="wktupload" value="<?= $check["wktupload"] ?>">
+                <input type="hidden" name="wktvalidasi" value="<?= $check["wktvalidasi"]?>">
                 <input type="text" name="nama" id="nama" placeholder="Nama Checklist" value="<?= $check["nama"]?>">
                 <input type="date" id="start" name="tanggal" value="<?= $check["tanggal"]?>" min="2023-09-18" max="2025-12-31" required />
-                <p>Sebelumnya Ditunjukkan Ke : <?= $check["untuk"]?></p>
+                <p>Sebelumnya Ditunjukkan Ke : <?= $name[0]["username"]?></p>
                 <section class="check">
                     <label for="checkfor">Ditunjukkan Ke</label>
                     <?php foreach($untuk as $u) :?>
-                        <input type="radio" name="radio" id="<?= $u["username"]?>" value="<?= $u["username"]?>">
+                        <input type="radio" name="radio" id="<?= $u["username"]?>" value="<?= intval($u["id"])?>" required>
                         <label for="<?= $u["username"]?>"><?= $u["username"]?></label>
                     <?php endforeach;?>
                 </section>

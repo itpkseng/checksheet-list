@@ -40,9 +40,6 @@ nav .right {
     align-items: center;
 }
 
-
-
-
 nav .right img {
     height: 30px;
     width: 30px;
@@ -64,18 +61,20 @@ nav .right p {
     margin: auto;
     margin-top: 22px;
     height: 140vh;
+    gap: 10px;
 }
 
-.make-checksheet button {
+.make-checksheet a {
     background-color: var(--btn-red);
-    color:white;
-    border: 1px solid #4B4B4B;
-    padding: 3px 40px;
-    font-weight: bolder;
+    padding: 5px 50px;
     border-radius: 5px;
-    margin-bottom: 30px;
+    text-decoration: none;
+    color:white;
+    font-weight: 600;
+    border: 1px solid black;
 
 }
+
 
 
 
@@ -168,31 +167,82 @@ input[type="file"]{
 
 /* end of checksheet */
 
-@media only screen and (max-width: 744px) {
+@media (max-width: 1024px) {
 
     /* checksheets */
 
-.make-checksheet {
+
+
+    /* navbar */
+
+
+    /* nav */
+
+    /* body {
+        background-color: limegreen;
+    } */
+
+
+nav {
+    color : white;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: normal;
-    width :95%;
-    margin: auto;
-    margin-top: 22px;
-    height: 90vh;
+    background-color: var(--navbar);
+    justify-content: space-between;
     
 }
 
-.make-checksheet button {
+nav .left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .left img {
+    height: 35px;
+    width: 35px;
+}
+
+nav .left h3 {
+    font-size: 0.75rem;
+}
+
+nav .right {
+    display: flex;
+    margin-right: 0.25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .right img {
+    height: 30px;
+    width: 30px;
+}
+
+nav .right p {
+    margin-right: 0.5rem;
+}
+
+/* end of navbar */
+
+
+.make-checksheet {
+    display: flex;
+    align-items: start;
+    flex-direction: column-reverse;
+    width : 55%;
+    margin: auto;
+    margin-top: 22px;
+    height: 80vh;
+}
+
+.make-checksheet a {
     background-color: var(--btn-red);
-    color:white;
-    border: 1px solid #4B4B4B;
-    padding: 10px 50px;
-    font-weight: bolder;
+    padding: 5px 50px;
     border-radius: 5px;
-    align-self: center;
-    margin-top: 20px;
-    font-weight: 800;
+    text-decoration: none;
+    color:white;
+    font-weight: 600;
+    border: 1px solid black;
 }
 
 
@@ -202,7 +252,7 @@ input[type="file"]{
 
 /* checksheet */
 
-.container {
+ .container {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -211,9 +261,11 @@ input[type="file"]{
     border-radius: 9px;
 }
 
+
+
 .container .header {
     padding-left:25px;
-    height: 10%;
+    height: 25%;
     
 }
 
@@ -229,9 +281,9 @@ input[type="file"]{
 }
 
 .container input {
-    padding: 20px 0;
+    padding: 10px 0;
     padding-left: 20px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -250,6 +302,7 @@ input[type="file"]{
 }
 
 
+
 input[type="checkbox"] {
     height: 25px;
     width: 25px;
@@ -265,8 +318,10 @@ input[type="file"]{
     display: none;
 }
 
+
+
 .container .action {
-    margin-top: 20px;
+    margin-top: 0;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -276,46 +331,96 @@ input[type="file"]{
     background-color: #6CD347;
     color: black;
     border: 1px solid #4B4B4B;
-    padding: 15px 100px;
-    font-weight: 800;
-    font-size: 1.15rem;
+    padding: 5px 50px;
+    font-weight: 600;
+    font-size: 1rem;
     margin-bottom: 30px;
 }
 
+.container .lists .check {
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+} 
+}
 
 
+@media (max-width: 744px) {
 
-
-
-/* end of checksheet */
-
-
-   }
-@media only screen and (max-width: 425px) {
+    /* body {
+        background-color: blue;
+    } */
 
     /* checksheets */
 
-.make-checksheet {
+
+
+    /* navbar */
+
+
+    /* nav */
+
+
+nav {
+    color : white;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: normal;
-    width :95%;
-    margin: auto;
-    margin-top: 22px;
-    height: 80vh;
+    background-color: var(--navbar);
+    justify-content: space-between;
     
 }
 
-.make-checksheet button {
+nav .left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .left img {
+    height: 35px;
+    width: 35px;
+}
+
+nav .left h3 {
+    font-size: 0.75rem;
+}
+
+nav .right {
+    display: flex;
+    margin-right: 0.25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .right img {
+    height: 30px;
+    width: 30px;
+}
+
+nav .right p {
+    margin-right: 0.5rem;
+}
+
+/* end of navbar */
+
+
+.make-checksheet {
+    display: flex;
+    align-items: start;
+    flex-direction: column-reverse;
+    width : 55%;
+    margin: auto;
+    margin-top: 22px;
+    height: 80vh;
+}
+
+.make-checksheet a {
     background-color: var(--btn-red);
-    color:white;
-    border: 1px solid #4B4B4B;
-    padding: 10px 50px;
-    font-weight: bolder;
+    padding: 5px 50px;
     border-radius: 5px;
-    align-self: center;
-    margin-top: 20px;
-    font-weight: 800;
+    text-decoration: none;
+    color:white;
+    font-weight: 600;
+    border: 1px solid black;
 }
 
 
@@ -325,14 +430,197 @@ input[type="file"]{
 
 /* checksheet */
 
-.container {
+ .container {
     display: flex;
     flex-direction: column;
     background-color: white;
     width: 100%;
-    height: 65vh;
+    height: 70vh;
     border-radius: 9px;
 }
+
+
+
+.container .header {
+    padding-left:25px;
+    height: 25%;
+    
+}
+
+.container .header h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.container .header p {
+    padding: 0;
+    margin: 0;
+}
+
+.container input {
+    padding: 10px 0;
+    padding-left: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.container .lists {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 0 20px;
+    font-weight: bold;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.container .lists .check {
+    display: flex;
+    align-items: center;
+}
+
+
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+}
+
+input[type="date"] {
+    width: 95%;
+}
+
+
+
+input[type="file"]{
+    display: none;
+}
+
+
+
+.container .action {
+    margin-top: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container button[type="submit"] {
+    background-color: #6CD347;
+    color: black;
+    border: 1px solid #4B4B4B;
+    padding: 5px 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.container .lists .check {
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+} 
+}
+
+
+
+
+@media (max-width: 425px) {
+
+    /* checksheets */
+
+    /* body {
+        background-color: rgb(146, 71, 71);
+    } */
+
+    /* navbar */
+
+
+    /* nav */
+
+
+nav {
+    color : white;
+    display: flex;
+    background-color: var(--navbar);
+    justify-content: space-between;
+    
+}
+
+nav .left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .left img {
+    height: 35px;
+    width: 35px;
+}
+
+nav .left h3 {
+    font-size: 0.75rem;
+}
+
+nav .right {
+    display: flex;
+    margin-right: 0.25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .right img {
+    height: 30px;
+    width: 30px;
+}
+
+nav .right p {
+    margin-right: 0.5rem;
+}
+
+/* end of navbar */
+
+
+.make-checksheet {
+    display: flex;
+    align-items: start;
+    flex-direction: column-reverse;
+    width : 95%;
+    margin: auto;
+    margin-top: 22px;
+    height: 80vh;
+    
+
+}
+
+.make-checksheet a {
+    background-color: var(--btn-red);
+    padding: 5px 50px;
+    border-radius: 5px;
+    text-decoration: none;
+    color:white;
+    font-weight: 600;
+    border: 1px solid black;
+
+}
+
+
+
+
+/* end of checksheets  */
+
+/* checksheet */
+
+ .container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 70vh;
+    border-radius: 9px;
+}
+
+
 
 .container .header {
     padding-left:25px;
@@ -373,6 +661,7 @@ input[type="file"]{
 }
 
 
+
 input[type="checkbox"] {
     height: 25px;
     width: 25px;
@@ -387,6 +676,8 @@ input[type="date"] {
 input[type="file"]{
     display: none;
 }
+
+
 
 .container .action {
     margin-top: 0;
@@ -408,8 +699,6 @@ input[type="file"]{
 .container .lists .check {
     display: flex;
     align-items: start;
-    flex-direction: column;
-    
-}
-/* end of checksheet */
+    flex-direction: row;
+} 
    }

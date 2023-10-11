@@ -21,13 +21,19 @@ $sebulan = date('Y-m-d',$sebulanAngka);
 $hasilSemua = query("SELECT * from checklist");
 
 $username = $_SESSION["username"];
+$id = $_SESSION["id"];
 
 //untuk dipecah jadi satuan
 //diambil untuk mysql
 //mengambil checklist dengan where untuk = username;
+if($_SESSION["level"] === "staff") {
+    $hasilFilter = query("SELECT * from checklist WHERE tanggal BETWEEN '$hariIni' AND '$sebulan'");
+}
 
-$hasilFilter = query("SELECT * from checklist WHERE untuk LIKE '%$username%' AND tanggal BETWEEN '$hariIni' AND '$sebulan'");
-
+if($_SESSION["level"] !== "staff") {
+    $hasilFilter = query("SELECT * from checklist WHERE untuk = $id AND tanggal BETWEEN '$hariIni' AND '$sebulan'");
+}
+$hasilFilter = query("SELECT * from checklist WHERE tanggal BETWEEN '$hariIni' AND '$sebulan'");
 ?>
 <table border="1">
     <tr>
@@ -38,6 +44,11 @@ $hasilFilter = query("SELECT * from checklist WHERE untuk LIKE '%$username%' AND
         <th>Tanggal Buat</th>
         <th>Untuk</th>
         <th>Kondisi</th>
+        <th>Waktu Validasi</th>
+        <th>Gambar</th>
+        <th>Waktu Upload</th>
+        <th>Catatan Dari Bawahan</th>
+        <th>Catatan Dari Atasan</th>
     </tr>
     <?php
     $i = 1;
@@ -50,6 +61,11 @@ $hasilFilter = query("SELECT * from checklist WHERE untuk LIKE '%$username%' AND
         <td><?= $hasil["tanggalbuat"]?></td>
         <td><?= $hasil["untuk"]?></td>
         <td><?= $hasil["kondisi"]?></td>
+        <td><?= $hasil["wktvalidasi"]?></td>
+        <td><?= $hasil["gambar"]?></td>
+        <td><?= $hasil["wktupload"]?></td>
+        <td><?= $hasil["catatandaribawahan"]?></td>
+        <td><?= $hasil["catatandariatasan"]?></td>
     </tr>
     <?php endforeach;?>
 </table>

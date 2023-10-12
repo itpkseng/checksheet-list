@@ -433,8 +433,8 @@
                                                         <?php if($userReal) :?>
                                                             <?php if($belumValidasi === "belum validasi"):?>
                                                                 <section class="action">
-                                                                    <a href="./view/editcheck.php?id=<?= $data["id"]?>"class="btn btn-danger" id="edit-tombol"><img src="./img/edit-icon.svg" alt=""></a>
-                                                                    <a href="./view//delete.php?id=<?= $data["id"]?>"class="btn btn-warning" id="delete-tombol"><img src="./img/delete-icon.svg" alt=""></a>
+                                                                    <a href="./view/editcheck.php?id=<?= $data["id"]?>"class="btn btn-warning" id="edit-tombol"><img src="./img/edit-icon.svg" alt=""></a>
+                                                                    <a href="./view//delete.php?id=<?= $data["id"]?>"class="btn btn-danger" id="delete-tombol"><img src="./img/delete-icon.svg" alt=""></a>
                                                                 </section> 
                                                             <?php endif;?>
                                                             <?php if($tungguValidasi === "menunggu validasi"):?>  

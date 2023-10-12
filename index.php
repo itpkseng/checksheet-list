@@ -498,12 +498,12 @@
                                     <?php foreach($dataTampilHariIni as $data) :?>
                                         <!-- mengambil tanggal dan userReal -->
                                         <?php
-                                        $tanggalReal = $data["tanggal"];
-                                        $userReal = strstr($data["pembuat"],$_SESSION["username"]);
-                                        $untukReal = strstr($data["untuk"],$_SESSION["id"]);
-                                        $tungguValidasi = strtr($data["kondisi"],$kondisiHariIni);
-                                        $belumValidasi = strtr($data["kondisi"], $kondisiHariIni);
-                                        $tervalidasi = strtr($data["kondisi"],$kondisiHariIni);                    
+                                            $tanggalReal = $data["tanggal"];
+                                            $userReal = strstr($data["pembuat"],$_SESSION["username"]);
+                                            $untukReal = strstr($data["untuk"],$_SESSION["id"]);
+                                            $tungguValidasi = strtr($data["kondisi"],$kondisiHariIni);
+                                            $belumValidasi = strtr($data["kondisi"], $kondisiHariIni);
+                                            $tervalidasi = strtr($data["kondisi"],$kondisiHariIni);                    
                     
                                         ?>
                     
@@ -526,12 +526,10 @@
                                 
                                                         <?php if($untukReal) :?>
                                                             <?php if($belumValidasi === "belum validasi"):?>
-                                                                <input type="file" id="image"name="image" style="display: none;">
-                                                                <label for="image" id="belum-label"><?=$data["nama"]?></label>
-                                       
+                                                                <label for="image" id="belum-label" class="form-label"><?=$data["nama"]?></label>
+                                                                <input type="file" class="form-control form-control-sm" id="image"name="image">
                                                             <?php endif;?>
                                                             <?php if($tungguValidasi === "menunggu validasi"):?>
-                                                                <input type="file" id="image"name="image" style="display: none;">
                                                                 <label for="image"><?=$data["nama"]?></label>
                                                             <?php endif;?>
                                                             <?php if($tervalidasi === "tervalidasi"):?>

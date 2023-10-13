@@ -17,12 +17,12 @@
     if (hapus($id) > 0) {
         echo "<script>
             alert('checklist berhasil dihapus');
-            document.location.href = '../index.php';
+            document.location.href = '/checksheetlist/index.php';
             </script>";  
     } else {
         echo "<script>
             alert('checklist gagal dihapus');
-            document.location.href = '../index.php';
+            document.location.href = '/checksheetlist/index.php';
             </script>";  
     }
 

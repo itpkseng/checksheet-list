@@ -91,6 +91,7 @@
             case 'image/png': 
                 $image = imagecreatefrompng($source); 
                 imagepng($image, $destination, $quality);
+                
             break; 
             case 'image/gif': 
                 $image = imagecreatefromgif($source); 
@@ -130,7 +131,7 @@
                 $imageTemp = $_FILES["image"]["tmp_name"]; 
              
                 // Compress size and upload image 
-                $compressedImage = compressImage($imageTemp, $imageUploadPath, 10);
+                $compressedImage = compressImage($imageTemp, $imageUploadPath, 9);
              
                 if($compressedImage){ 
                     $status = 'success'; 

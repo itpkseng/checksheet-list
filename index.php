@@ -17,14 +17,17 @@
     $hariJadiAngka = strtotime($hariIni);
     $besokAngka = $hariJadiAngka + 86400;
     $besok = date('Y-m-d',$besokAngka);
+    $id = $_SESSION["id"];
 
 
     $dataTampilHariIni = query("SELECT * FROM checklist WHERE tanggal = '$hariIni'");
     $dataTampilBesok = query("SELECT * FROM checklist WHERE tanggal = '$besok'");
+    $dataTampilHariIniPerUser = query("SELECT * FROM checklist WHERE tanggal = '$hariIni' AND untuk = $id");
 
 
     $kondisiHariIni = [];
     $kondisiBesok = [];
+    $kondisiHariIniPerUser = [];
 
     //mengambil kondisi checklist hari ini
     foreach($dataTampilHariIni as $data) {
@@ -33,10 +36,16 @@
         $kondisiHariIni[] = $data["kondisi"];
     }
 
+    //mengambil kondisi checklist hari ini per user
+    foreach($dataTampilHariIniPerUser as $data) {
+        $kondisiHariIniPerUser[] = $data["kondisi"];
+    }
+
     //mengambil kondisi checklist besok
     foreach($dataTampilBesok as $data) {
         $kondisiBesok[] = $data["kondisi"];
     }
+
 
     function sudahValid($nilai){
         return ($nilai === "tervalidasi");
@@ -57,6 +66,13 @@
     $belumValidHariIni = count(array_filter($kondisiHariIni,"belumValid"));
     $nungguValidHariIni = count(array_filter($kondisiHariIni,"nungguValid"));
 
+    //mengetahui jumlah kondisi checklist hari ini per user
+
+    $jumlahChecklistHariIniPerUser = count($kondisiHariIniPerUser);
+    $validHariIniPerUser = count(array_filter($kondisiHariIniPerUser,"sudahValid"));
+    $belumValidHariIniPerUser = count(array_filter($kondisiHariIniPerUser,"belumValid"));
+    $nungguValidHariIniPerUser = count(array_filter($kondisiHariIniPerUser,"nungguValid"));
+
     //mengetahui jumlah kondisi checklist besok
 
     $jumlahChecklistBesok = count($kondisiBesok);
@@ -68,6 +84,12 @@
         $persentaseHariIni = 0.0;
     } else {
         $persentaseHariIni = round(($validHariIni + $nungguValidHariIni) / $jumlahChecklistHariIni * 100);
+    }
+
+    if ($validHariIniPerUser === 0) {
+        $persentaseHariIniPerUser = 0.0;
+    } else {
+        $persentaseHariIniPerUser = round(($validHariIniPerUser + $nungguValidHariIniPerUser) / $jumlahChecklistHariIniPerUser * 100);
     }
 
     if ($validBesok === 0) {
@@ -584,7 +606,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr style="border: 1px solid black;">
-                                        <td><p>Progress : <?=$persentaseHariIni?>%</p></td>
+                                        <td><p>Progress : <?=$persentaseHariIniPerUser?>%</p></td>
                                     </tr>
                                 </tfoot>
                             </table>

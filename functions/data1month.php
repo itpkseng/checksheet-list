@@ -36,6 +36,12 @@
 ?>
 <table border="1">
     <tr>
+        <th>Legends</th>
+        <th>untuk 7 : asep</th>
+        <th>untuk 8 : agus</th>
+        <th>untuk 9 : agum</th>
+    </tr>
+    <tr>
         <th>No</th>
         <th>Nama</th>
         <th>Pembuat</th>
